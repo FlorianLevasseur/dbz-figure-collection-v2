@@ -1,0 +1,95 @@
+<div class="page">
+  <div class="page-header">
+    <h2>Ajouter une figure</h2>
+    <a routerLink="/figures" class="btn btn-secondary">← Retour</a>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="form-card">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="name">Nom de la figure *</label>
+        <input id="name" formControlName="name" placeholder="ex: Goku Ultra Instinct" />
+        @if (form.get('name')?.invalid && form.get('name')?.touched) {
+          <span class="field-error">Le nom est requis</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="character">Personnage *</label>
+        <input id="character" formControlName="character" list="characters-list" placeholder="ex: Son Goku" autocomplete="off" />
+        <datalist id="characters-list">
+          @for (c of characters(); track c) {
+            <option [value]="c"></option>
+          }
+        </datalist>
+        @if (form.get('character')?.invalid && form.get('character')?.touched) {
+          <span class="field-error">Le personnage est requis</span>
+        }
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="series">Série</label>
+        <input id="series" formControlName="series" list="series-list" placeholder="ex: Dragon Ball Super" autocomplete="off" />
+        <datalist id="series-list">
+          @for (s of seriesList(); track s) {
+            <option [value]="s"></option>
+          }
+        </datalist>
+      </div>
+
+      <div class="form-group">
+        <label for="manufacturer">Fabricant</label>
+        <input id="manufacturer" formControlName="manufacturer" placeholder="ex: Bandai, Banpresto..." />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="scale">Échelle</label>
+        <input id="scale" formControlName="scale" placeholder="ex: 1/8, 1/6..." />
+      </div>
+
+      <div class="form-group">
+        <label for="price">Prix (€)</label>
+        <input id="price" type="number" formControlName="price" placeholder="ex: 49.99" min="0" step="0.01" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="purchaseDate">Date d'achat</label>
+        <input id="purchaseDate" type="date" formControlName="purchaseDate" />
+      </div>
+
+      <div class="form-group">
+        <label for="condition">État *</label>
+        <select id="condition" formControlName="condition">
+          <option value="mint">Mint (neuf)</option>
+          <option value="near-mint">Near Mint</option>
+          <option value="good">Bon état</option>
+          <option value="fair">Passable</option>
+          <option value="poor">Mauvais état</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="imageUrl">URL de l'image</label>
+      <input id="imageUrl" formControlName="imageUrl" placeholder="https://..." />
+    </div>
+
+    <div class="form-group">
+      <label for="notes">Notes</label>
+      <textarea id="notes" formControlName="notes" rows="3" placeholder="Commentaires, détails..."></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid || submitting">
+        {{ submitting ? 'Enregistrement...' : 'Ajouter la figure' }}
+      </button>
+      <a routerLink="/figures" class="btn btn-secondary">Annuler</a>
+    </div>
+  </form>
+</div>

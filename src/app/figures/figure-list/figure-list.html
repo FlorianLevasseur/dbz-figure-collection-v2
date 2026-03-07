@@ -1,0 +1,56 @@
+<div class="banner">
+  <div class="banner-content">
+    <h1>Ma Collection</h1>
+    <p class="banner-count">{{ figures().length }} figure{{ figures().length > 1 ? 's' : '' }}</p>
+  </div>
+  <a routerLink="/figures/new" class="btn-add">+ Ajouter</a>
+</div>
+
+<div class="page">
+  @if (loading()) {
+    <p class="state-msg">Chargement...</p>
+  } @else if (error()) {
+    <p class="state-msg error">{{ error() }}</p>
+  } @else if (figures().length === 0) {
+    <div class="empty-state">
+      <p>Aucune figure pour l'instant.</p>
+      <a routerLink="/figures/new" class="btn-add">Ajouter ma première figure</a>
+    </div>
+  } @else {
+    <div class="cards-grid">
+      @for (figure of figures(); track figure.id) {
+        <div class="card">
+          <div class="card-image">
+            @if (figure.imageUrl) {
+              <img [src]="figure.imageUrl" [alt]="figure.name" />
+            } @else {
+              <div class="card-image-placeholder">?</div>
+            }
+          </div>
+          <div class="card-body">
+            <h3 class="card-name">{{ figure.name }}</h3>
+            <p class="card-character">{{ figure.character }}</p>
+            @if (figure.series) {
+              <p class="card-series">{{ figure.series }}</p>
+            }
+            <div class="card-meta">
+              @if (figure.manufacturer) {
+                <span class="meta-tag">{{ figure.manufacturer }}</span>
+              }
+              @if (figure.scale) {
+                <span class="meta-tag">{{ figure.scale }}</span>
+              }
+              <span class="meta-tag condition">{{ figure.condition }}</span>
+            </div>
+            @if (figure.price != null) {
+              <p class="card-price">{{ figure.price }} €</p>
+            }
+          </div>
+          <div class="card-footer">
+            <button class="btn-delete" (click)="delete(figure.id)">Supprimer</button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

@@ -1,0 +1,21 @@
+.navbar {
+  background: #0a0a14;
+  border-bottom: 1px solid #2d2d44;
+  padding: 0 2rem;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #e8e8f0;
+}
+
+main {
+  min-height: calc(100vh - 60px);
+  background: #0f0f1a;
+}

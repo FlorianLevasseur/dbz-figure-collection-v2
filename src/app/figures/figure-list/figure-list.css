@@ -1,0 +1,199 @@
+/* ── Bannière ── */
+.banner {
+  background: #13131f;
+  border-bottom: 1px solid #2d2d44;
+  padding: 1.75rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.banner-content h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #e8e8f0;
+  letter-spacing: 0.02em;
+}
+
+.banner-count {
+  color: #8888aa;
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+}
+
+/* ── Bouton ajouter ── */
+.btn-add {
+  background: #ff6b00;
+  color: #fff;
+  padding: 0.6rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.btn-add:hover {
+  background: #e55a00;
+}
+
+/* ── Grille ── */
+.page {
+  padding: 2rem 2.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ── Carte ── */
+.card {
+  background: #1a1a2e;
+  border: 1px solid #2d2d44;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: #ff6b00;
+  box-shadow: 0 8px 24px rgba(255, 107, 0, 0.2);
+}
+
+/* ── Image ── */
+.card-image {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #0f0f1a;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+.card-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: #2d2d44;
+}
+
+/* ── Corps ── */
+.card-body {
+  padding: 1rem;
+  flex: 1;
+}
+
+.card-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f0f0ff;
+  line-height: 1.3;
+  margin-bottom: 0.25rem;
+}
+
+.card-character {
+  font-size: 0.85rem;
+  color: #f5c518;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.card-series {
+  font-size: 0.78rem;
+  color: #8888aa;
+  margin-bottom: 0.6rem;
+}
+
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.6rem;
+}
+
+.meta-tag {
+  background: #0f0f1a;
+  border: 1px solid #2d2d44;
+  color: #8888aa;
+  padding: 0.15rem 0.5rem;
+  border-radius: 99px;
+  font-size: 0.7rem;
+}
+
+.meta-tag.condition {
+  border-color: #ff6b0055;
+  color: #ff6b00;
+}
+
+.card-price {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #f5c518;
+}
+
+/* ── Footer ── */
+.card-footer {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid #2d2d44;
+}
+
+.btn-delete {
+  width: 100%;
+  background: transparent;
+  border: 1px solid #3d2020;
+  color: #cc4444;
+  padding: 0.4rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.btn-delete:hover {
+  background: #2d1010;
+  border-color: #cc4444;
+}
+
+/* ── États ── */
+.state-msg {
+  text-align: center;
+  color: #8888aa;
+  margin-top: 4rem;
+  font-size: 1rem;
+}
+
+.state-msg.error {
+  color: #cc4444;
+}
+
+.empty-state {
+  text-align: center;
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  color: #8888aa;
+}
