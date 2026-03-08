@@ -1,7 +1,7 @@
 <div class="page">
   <div class="page-header">
-    <h2>Ajouter une figure</h2>
-    <a routerLink="/figures" class="btn btn-secondary">← Retour</a>
+    <h2>Ajouter au catalogue</h2>
+    <a routerLink="/catalogue" class="btn btn-secondary">← Retour</a>
   </div>
 
   <form [formGroup]="form" (ngSubmit)="submit()" class="form-card">
@@ -52,32 +52,9 @@
       </div>
 
       <div class="form-group">
-        <label for="price">Prix (€)</label>
-        <input id="price" type="number" formControlName="price" placeholder="ex: 49.99" min="0" step="0.01" />
+        <label for="imageUrl">URL de l'image</label>
+        <input id="imageUrl" formControlName="imageUrl" placeholder="https://..." />
       </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group">
-        <label for="purchaseDate">Date d'achat</label>
-        <input id="purchaseDate" type="date" formControlName="purchaseDate" />
-      </div>
-
-      <div class="form-group">
-        <label for="condition">État *</label>
-        <select id="condition" formControlName="condition">
-          <option value="mint">Mint (neuf)</option>
-          <option value="near-mint">Near Mint</option>
-          <option value="good">Bon état</option>
-          <option value="fair">Passable</option>
-          <option value="poor">Mauvais état</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="imageUrl">URL de l'image</label>
-      <input id="imageUrl" formControlName="imageUrl" placeholder="https://..." />
     </div>
 
     <div class="form-group">
@@ -87,9 +64,9 @@
 
     <div class="form-actions">
       <button type="submit" class="btn btn-primary" [disabled]="form.invalid || submitting">
-        {{ submitting ? 'Enregistrement...' : 'Ajouter la figure' }}
+        {{ submitting ? 'Enregistrement...' : 'Ajouter au catalogue' }}
       </button>
-      <a routerLink="/figures" class="btn btn-secondary">Annuler</a>
+      <a routerLink="/catalogue" class="btn btn-secondary">Annuler</a>
     </div>
   </form>
 </div>

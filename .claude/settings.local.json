@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(psql --version)",
+      "Bash(pg_ctl --version)",
+      "Bash(\"/c/Program Files/PostgreSQL/18/bin/psql\" --version)",
+      "Bash(PGPASSWORD=\"tfsr#77R6-1\" \"/c/Program Files/PostgreSQL/18/bin/psql\" -U postgres -c \"CREATE DATABASE dbz_figures;\")",
+      "Bash(npm install express cors dotenv @prisma/client)",
+      "Bash(npm install -D prisma ts-node @types/express @types/cors @types/node concurrently)",
+      "Bash(npx prisma init --datasource-provider postgresql)",
+      "Bash(npx prisma migrate dev --name init)",
+      "Bash(npm install @prisma/adapter-pg pg)",
+      "Bash(npm install -D @types/pg)",
+      "Bash(npx prisma generate)",
+      "Bash(grep -l \"PrismaClient\" \"c:/Users/TiFlo/dbz-figure-collection-v2/server/generated/prisma/\"*.ts)",
+      "Bash(npm install -D tsx)",
+      "Bash(taskkill //F //IM node.exe)",
+      "WebFetch(domain:myfigurecollection.net)",
+      "Bash(npx prisma migrate dev --name add-character-series)",
+      "Bash(npx prisma db seed)",
+      "Bash(npm install bcrypt jsonwebtoken)",
+      "Bash(npm install -D @types/bcrypt @types/jsonwebtoken)",
+      "Bash(npx prisma migrate dev --name add-auth-and-user-collection)",
+      "Bash(npx prisma migrate dev --name add-auth-and-user-collection --force-reset)",
+      "Bash(npx prisma migrate dev --name add-auth-and-user-collection --create-only)",
+      "Bash(npx prisma db push --accept-data-loss)"
+    ]
+  }
+}

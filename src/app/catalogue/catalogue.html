@@ -1,0 +1,50 @@
+<div class="page">
+  <div class="page-header">
+    <h2>Catalogue de Figurines</h2>
+    @if (auth.isAdmin) {
+      <a routerLink="/admin/figures/new" class="btn btn-primary">+ Ajouter</a>
+    }
+  </div>
+
+  @if (loading()) {
+    <div class="loading">Chargement...</div>
+  } @else if (figures().length === 0) {
+    <div class="empty">Aucune figurine dans le catalogue.</div>
+  } @else {
+    <div class="grid">
+      @for (figure of figures(); track figure.id) {
+        <div class="card" [class.owned]="figure.owned">
+          <div class="card-image">
+            @if (figure.imageUrl) {
+              <img [src]="figure.imageUrl" [alt]="figure.name" />
+            } @else {
+              <div class="no-image">?</div>
+            }
+            @if (figure.owned) {
+              <div class="owned-badge">Dans ma collection</div>
+            }
+          </div>
+          <div class="card-body">
+            <div class="card-series">{{ figure.series || '—' }}</div>
+            <h3 class="card-name">{{ figure.name }}</h3>
+            <div class="card-character">{{ figure.character }}</div>
+            @if (figure.manufacturer || figure.scale) {
+              <div class="card-meta">
+                @if (figure.manufacturer) { <span>{{ figure.manufacturer }}</span> }
+                @if (figure.scale) { <span>{{ figure.scale }}</span> }
+              </div>
+            }
+            <button
+              class="btn"
+              [class.btn-remove]="figure.owned"
+              [class.btn-add]="!figure.owned"
+              [disabled]="togglingId() === figure.id"
+              (click)="toggleCollection(figure)">
+              {{ figure.owned ? 'Retirer' : 'Ajouter à ma collection' }}
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

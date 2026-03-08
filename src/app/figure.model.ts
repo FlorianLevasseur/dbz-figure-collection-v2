@@ -5,13 +5,11 @@ export interface Figure {
   series?: string;
   manufacturer?: string;
   scale?: string;
-  price?: number;
-  purchaseDate?: string;
-  condition: string;
   imageUrl?: string;
   notes?: string;
+  owned?: boolean;
   createdAt: string;
   updatedAt: string;
 }
 
-export type FigureCreate = Omit<Figure, 'id' | 'createdAt' | 'updatedAt'>;
+export type FigureCreate = Omit<Figure, 'id' | 'owned' | 'createdAt' | 'updatedAt'>;

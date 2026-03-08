@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client"
   output   = "../server/generated/prisma"
@@ -13,20 +10,48 @@ datasource db {
   provider = "postgresql"
 }
 
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id         Int          @id @default(autoincrement())
+  username   String       @unique
+  email      String       @unique
+  password   String
+  role       Role         @default(USER)
+  createdAt  DateTime     @default(now())
+  collection UserFigure[]
+}
+
 model Figure {
-  id           Int       @id @default(autoincrement())
+  id           Int          @id @default(autoincrement())
   name         String
   character    String
   series       String?
   manufacturer String?
   scale        String?
-  price        Float?
-  purchaseDate DateTime?
-  condition    String    @default("mint")
   imageUrl     String?
   notes        String?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  owners       UserFigure[]
+}
+
+model UserFigure {
+  id           Int       @id @default(autoincrement())
+  userId       Int
+  figureId     Int
+  user         User      @relation(fields: [userId], references: [id])
+  figure       Figure    @relation(fields: [figureId], references: [id])
+  condition    String    @default("mint")
+  price        Float?
+  purchaseDate DateTime?
+  notes        String?
   createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+
+  @@unique([userId, figureId])
 }
 
 model Character {

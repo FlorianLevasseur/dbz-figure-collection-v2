@@ -26,9 +26,6 @@ export class FigureForm implements OnInit {
     series: [''],
     manufacturer: [''],
     scale: [''],
-    price: [null as number | null],
-    purchaseDate: [''],
-    condition: ['mint', Validators.required],
     imageUrl: [''],
     notes: ['']
   });
@@ -49,8 +46,6 @@ export class FigureForm implements OnInit {
     const value = this.form.value;
     const payload = {
       ...value,
-      price: value.price ? Number(value.price) : undefined,
-      purchaseDate: value.purchaseDate ? new Date(value.purchaseDate).toISOString() : undefined,
       series: value.series || undefined,
       manufacturer: value.manufacturer || undefined,
       scale: value.scale || undefined,
@@ -59,7 +54,7 @@ export class FigureForm implements OnInit {
     };
 
     this.figureService.create(payload as any).subscribe({
-      next: () => this.router.navigate(['/figures']),
+      next: () => this.router.navigate(['/catalogue']),
       error: () => { this.submitting = false; }
     });
   }

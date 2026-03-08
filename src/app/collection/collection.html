@@ -1,0 +1,47 @@
+<div class="page">
+  <div class="page-header">
+    <h2>Ma Collection</h2>
+    <a routerLink="/catalogue" class="btn btn-secondary">Voir le catalogue</a>
+  </div>
+
+  @if (loading()) {
+    <div class="loading">Chargement...</div>
+  } @else if (items().length === 0) {
+    <div class="empty">
+      <p>Votre collection est vide.</p>
+      <a routerLink="/catalogue" class="btn btn-primary">Parcourir le catalogue</a>
+    </div>
+  } @else {
+    <div class="stats">{{ items().length }} figurine{{ items().length > 1 ? 's' : '' }}</div>
+    <div class="grid">
+      @for (item of items(); track item.id) {
+        <div class="card">
+          <div class="card-image">
+            @if (item.figure.imageUrl) {
+              <img [src]="item.figure.imageUrl" [alt]="item.figure.name" />
+            } @else {
+              <div class="no-image">?</div>
+            }
+          </div>
+          <div class="card-body">
+            <div class="card-series">{{ item.figure.series || '—' }}</div>
+            <h3 class="card-name">{{ item.figure.name }}</h3>
+            <div class="card-character">{{ item.figure.character }}</div>
+            @if (item.figure.manufacturer || item.figure.scale) {
+              <div class="card-meta">
+                @if (item.figure.manufacturer) { <span>{{ item.figure.manufacturer }}</span> }
+                @if (item.figure.scale) { <span>{{ item.figure.scale }}</span> }
+              </div>
+            }
+            <button
+              class="btn btn-remove"
+              [disabled]="removingId() === item.figureId"
+              (click)="remove(item)">
+              Retirer
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

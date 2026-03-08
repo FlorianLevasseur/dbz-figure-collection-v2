@@ -1,0 +1,33 @@
+<div class="auth-page">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <span class="logo-text">DBZ</span>
+      <span class="logo-sub">Figure Collection</span>
+    </div>
+    <h2>Créer un compte</h2>
+
+    @if (error()) {
+      <div class="alert-error">{{ error() }}</div>
+    }
+
+    <form (ngSubmit)="submit()">
+      <div class="form-group">
+        <label for="username">Nom d'utilisateur</label>
+        <input id="username" type="text" [(ngModel)]="username" name="username" required placeholder="Goku42" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" [(ngModel)]="email" name="email" required placeholder="votre@email.com" />
+      </div>
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input id="password" type="password" [(ngModel)]="password" name="password" required placeholder="••••••••" />
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="loading()">
+        {{ loading() ? 'Inscription...' : 'S\'inscrire' }}
+      </button>
+    </form>
+
+    <p class="auth-link">Déjà un compte ? <a routerLink="/login">Se connecter</a></p>
+  </div>
+</div>

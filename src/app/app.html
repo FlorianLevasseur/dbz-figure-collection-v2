@@ -1,5 +1,22 @@
 <header class="navbar">
-  <span class="navbar-brand">DBZ Figure Collection</span>
+  <a routerLink="/catalogue" class="navbar-brand">DBZ Figure Collection</a>
+
+  @if (auth.currentUser(); as user) {
+    <nav class="navbar-nav">
+      <a routerLink="/catalogue" routerLinkActive="active">Catalogue</a>
+      <a routerLink="/collection" routerLinkActive="active">Ma Collection</a>
+      @if (auth.isAdmin) {
+        <a routerLink="/admin/figures/new" routerLinkActive="active">+ Ajouter</a>
+      }
+    </nav>
+    <div class="navbar-user">
+      <span class="username">{{ user.username }}</span>
+      @if (auth.isAdmin) {
+        <span class="badge-admin">Admin</span>
+      }
+      <button class="btn-logout" (click)="auth.logout()">Déconnexion</button>
+    </div>
+  }
 </header>
 
 <main>
